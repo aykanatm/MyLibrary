@@ -6,9 +6,18 @@
         {
             string output = "";
 
-            foreach (var property in this.GetType().GetProperties())
+            var properties = GetType().GetProperties();
+
+            for (var i = 0; i < properties.Length; i++)
             {
-                output += property.GetValue(this) + ", ";
+                if (i == properties.Length - 1)
+                {
+                    output += properties[i].GetValue(this);
+                }
+                else
+                {
+                    output += properties[i].GetValue(this) + ",";
+                }
             }
 
             return output;
