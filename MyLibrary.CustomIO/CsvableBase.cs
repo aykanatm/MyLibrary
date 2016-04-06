@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 
 namespace MyLibrary.CustomIO
 {
@@ -31,6 +28,8 @@ namespace MyLibrary.CustomIO
         public virtual string ToCsv(string[] propertiesToIgnore)
         {
             string output = "";
+            bool isFirstPropertyWritten = false;
+            
 
             var properties = GetType().GetProperties();
 
@@ -38,13 +37,15 @@ namespace MyLibrary.CustomIO
             {
                 if (!propertiesToIgnore.Contains(properties[i].Name))
                 {
-                    if (i == properties.Length - 1)
+                    if (isFirstPropertyWritten)
                     {
-                        output += PreProcess(properties[i].GetValue(this).ToString());
+                        output += ",";
                     }
-                    else
+                    output += PreProcess(properties[i].GetValue(this).ToString());
+
+                    if (!isFirstPropertyWritten)
                     {
-                        output += PreProcess(properties[i].GetValue(this).ToString()) + ",";
+                        isFirstPropertyWritten = true;
                     }
                 }
             }
@@ -56,19 +57,24 @@ namespace MyLibrary.CustomIO
         {
             string output = "";
 
+            bool isFirstPropertyWritten = false;
+
             var properties = GetType().GetProperties();
 
             for (var i = 0; i < properties.Length; i++)
             {
                 if (!propertiesToIgnore.Contains(i))
                 {
-                    if (i == properties.Length - 1)
+                    if (isFirstPropertyWritten)
                     {
-                        output += PreProcess(properties[i].GetValue(this).ToString());
+                        output += ",";
                     }
-                    else
+
+                    output += PreProcess(properties[i].GetValue(this).ToString());
+
+                    if (!isFirstPropertyWritten)
                     {
-                        output += PreProcess(properties[i].GetValue(this).ToString()) + ",";
+                        isFirstPropertyWritten = true;
                     }
                 }
             }
