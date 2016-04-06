@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Blob.cs" />
     <Compile Include="CsvableBase.cs" />
+    <Compile Include="CsvReader.cs" />
     <Compile Include="CsvWriter.cs" />
     <Compile Include="ExtensionMethods\FolderExtensionMethods.cs" />
     <Compile Include="GenericXmlSerializer.cs" />
