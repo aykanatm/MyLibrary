@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MyLibrary.CustomIO
 {
@@ -94,10 +96,14 @@ namespace MyLibrary.CustomIO
          
         private string PreProcess(string input)
         {
-            string output = input.Replace('ı', 'i').Replace('ç', 'c').Replace('ö', 'o').Replace('ş', 's').Replace('ü', 'u').Replace('ğ', 'g')
+            input = input.Replace('ı', 'i').Replace('ç', 'c').Replace('ö', 'o').Replace('ş', 's').Replace('ü', 'u').Replace('ğ', 'g')
                                  .Replace('İ', 'I').Replace('Ç', 'C').Replace('Ö', 'O').Replace('Ş', 'S').Replace('Ü', 'U').Replace('Ğ', 'G')
                                  .Trim();
-            return output;
+            if (input.Contains(","))
+            {
+                input = "\"" + input + "\"";
+            }
+            return input;
         }
     }
 }
