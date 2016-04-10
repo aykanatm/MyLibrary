@@ -95,8 +95,8 @@ namespace MyLibrary.CustomIO
         private string PreProcess(string input)
         {
             string output = input.Replace('ı', 'i').Replace('ç', 'c').Replace('ö', 'o').Replace('ş', 's').Replace('ü', 'u').Replace('ğ', 'g')
-                                 .Replace('İ', 'I').Replace('Ç', 'C').Replace('Ö', 'O').Replace('Ş', 'S').Replace('Ü', 'U').Replace('Ğ', 'G');
-            output = output.Trim();
+                                 .Replace('İ', 'I').Replace('Ç', 'C').Replace('Ö', 'O').Replace('Ş', 'S').Replace('Ü', 'U').Replace('Ğ', 'G')
+                                 .Trim();
             return output;
         }
     }
