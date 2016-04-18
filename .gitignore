@@ -10,3 +10,4 @@ MyLibrary.CustomMath/bin/
 MyLibrary.WPF/obj/
 MyLibrary.WPF/bin/
 *.user
+FeatureTest/
