@@ -14,23 +14,23 @@ namespace MyLibrary.CustomIO
 
         public static FileSerializer FromFile(string filePath)
         {
-            var blob = new FileSerializer {Bytes = GenerateBytes(filePath)};
-            return blob;
+            var fileSerializer = new FileSerializer {Bytes = GenerateBytes(filePath)};
+            return fileSerializer;
         }
 
         public static FileSerializer FromString(string str)
         {
             var stringBytes = str.Split(',');
 
-             var bytes = new byte[stringBytes.Length];
+            var bytes = new byte[stringBytes.Length];
 
             for (var i = 0; i < stringBytes.Length; i++)
             {
                 bytes[i] = Convert.ToByte(stringBytes[i]);
             }
 
-            var blob = new FileSerializer {Bytes = bytes};
-            return blob;
+            var fileSerializer = new FileSerializer {Bytes = bytes};
+            return fileSerializer;
         }
 
         private static byte[] GenerateBytes(string filePath)
