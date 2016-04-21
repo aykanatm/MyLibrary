@@ -25,7 +25,7 @@ namespace MyLibrary.CustomIO
             }
         }
 
-        public void WriteFromXml(string directoryPath, string fileExtension, string destination, string[] propertiesToIgnore)
+        public void WriteFromXml(string directoryPath, string fileExtension, string destination, string[] propertyNames, bool isIgnore)
         {
             var filePaths = Directory.GetFiles(directoryPath, fileExtension, SearchOption.AllDirectories);
             if (filePaths.Length > 0)
@@ -36,12 +36,12 @@ namespace MyLibrary.CustomIO
                     {
                         _gxs = new GenericXmlSerializer<T>();
                         var obj = _gxs.DeSerialize(filePath);
-                        sw.WriteLine(obj.ToCsv(propertiesToIgnore));
+                        sw.WriteLine(obj.ToCsv(propertyNames,isIgnore));
                     }
                 }
             }
         }
-        public void WriteFromXml(string directoryPath, string fileExtension, string destination, int[] propertyIndexesToIgnore)
+        public void WriteFromXml(string directoryPath, string fileExtension, string destination, int[] propertyIndexes, bool isIgnore)
         {
             var filePaths = Directory.GetFiles(directoryPath, fileExtension, SearchOption.AllDirectories);
             if (filePaths.Length > 0)
@@ -52,7 +52,7 @@ namespace MyLibrary.CustomIO
                     {
                         _gxs = new GenericXmlSerializer<T>();
                         var obj = _gxs.DeSerialize(filePath);
-                        sw.WriteLine(obj.ToCsv(propertyIndexesToIgnore));
+                        sw.WriteLine(obj.ToCsv(propertyIndexes, isIgnore));
                     }
                 }
             }
@@ -73,7 +73,7 @@ namespace MyLibrary.CustomIO
             }
         }
 
-        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, string[] propertiesToIgnore)
+        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, string[] propertyNames, bool isIgnore)
         {
             var objs = objects as IList<T> ?? objects.ToList();
             if (objs.Any())
@@ -82,13 +82,13 @@ namespace MyLibrary.CustomIO
                 {
                     foreach (var obj in objs)
                     {
-                        sw.WriteLine(obj.ToCsv(propertiesToIgnore));
+                        sw.WriteLine(obj.ToCsv(propertyNames, isIgnore));
                     }
                 }
             }
         }
 
-        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, int[] propertyIndexesToIgnore)
+        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, int[] propertyIndexes, bool isIgnore)
         {
             var objs = objects as IList<T> ?? objects.ToList();
             if (objs.Any())
@@ -97,7 +97,7 @@ namespace MyLibrary.CustomIO
                 {
                     foreach (var obj in objs)
                     {
-                        sw.WriteLine(obj.ToCsv(propertyIndexesToIgnore));
+                        sw.WriteLine(obj.ToCsv(propertyIndexes, isIgnore));
                     }
                 }
             }

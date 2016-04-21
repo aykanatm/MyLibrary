@@ -25,7 +25,7 @@ namespace MyLibrary.CustomIO
             return output;
         }
 
-        public virtual string ToCsv(string[] propertiesToIgnore)
+        public virtual string ToCsv(string[] propertyNames, bool isIgnore)
         {
             string output = "";
             bool isFirstPropertyWritten = false;
@@ -35,17 +35,36 @@ namespace MyLibrary.CustomIO
 
             for (var i = 0; i < properties.Length; i++)
             {
-                if (!propertiesToIgnore.Contains(properties[i].Name))
+                if (isIgnore)
                 {
-                    if (isFirstPropertyWritten)
+                    if (!propertyNames.Contains(properties[i].Name))
                     {
-                        output += ",";
-                    }
-                    output += PreProcess(properties[i].GetValue(this).ToString());
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+                        output += PreProcess(properties[i].GetValue(this).ToString());
 
-                    if (!isFirstPropertyWritten)
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (propertyNames.Contains(properties[i].Name))
                     {
-                        isFirstPropertyWritten = true;
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+                        output += PreProcess(properties[i].GetValue(this).ToString());
+
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
                     }
                 }
             }
@@ -53,7 +72,7 @@ namespace MyLibrary.CustomIO
             return output;
         }
 
-        public virtual string ToCsv(int[] propertiesToIgnore)
+        public virtual string ToCsv(int[] propertyIndexes, bool isIgnore)
         {
             string output = "";
 
@@ -63,20 +82,41 @@ namespace MyLibrary.CustomIO
 
             for (var i = 0; i < properties.Length; i++)
             {
-                if (!propertiesToIgnore.Contains(i))
+                if (isIgnore)
                 {
-                    if (isFirstPropertyWritten)
+                    if (!propertyIndexes.Contains(i))
                     {
-                        output += ",";
-                    }
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
 
-                    output += PreProcess(properties[i].GetValue(this).ToString());
+                        output += PreProcess(properties[i].GetValue(this).ToString());
 
-                    if (!isFirstPropertyWritten)
-                    {
-                        isFirstPropertyWritten = true;
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
                     }
                 }
+                else
+                {
+                    if (propertyIndexes.Contains(i))
+                    {
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+
+                        output += PreProcess(properties[i].GetValue(this).ToString());
+
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
+                    }
+                }
+                
             }
 
             return output;
