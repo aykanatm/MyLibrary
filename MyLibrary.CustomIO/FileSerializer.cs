@@ -3,22 +3,22 @@ using System.IO;
 
 namespace MyLibrary.CustomIO
 {
-    public class Blob
+    public class FileSerializer
     {
         public byte[] Bytes { get; private set; }
 
-        private Blob()
+        private FileSerializer()
         {
             
         }
 
-        public static Blob FromFile(string filePath)
+        public static FileSerializer FromFile(string filePath)
         {
-            var blob = new Blob {Bytes = GenerateBytes(filePath)};
+            var blob = new FileSerializer {Bytes = GenerateBytes(filePath)};
             return blob;
         }
 
-        public static Blob FromString(string str)
+        public static FileSerializer FromString(string str)
         {
             var stringBytes = str.Split(',');
 
@@ -29,7 +29,7 @@ namespace MyLibrary.CustomIO
                 bytes[i] = Convert.ToByte(stringBytes[i]);
             }
 
-            var blob = new Blob {Bytes = bytes};
+            var blob = new FileSerializer {Bytes = bytes};
             return blob;
         }
 
