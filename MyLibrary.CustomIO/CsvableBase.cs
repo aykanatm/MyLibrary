@@ -72,8 +72,6 @@ namespace MyLibrary.CustomIO
                             output += PreProcess(properties[i].GetValue(this).ToString());
                         }
 
-                        //output += PreProcess(properties[i].GetValue(this).ToString());
-
                         if (!isFirstPropertyWritten)
                         {
                             isFirstPropertyWritten = true;
@@ -98,7 +96,6 @@ namespace MyLibrary.CustomIO
                         {
                             output += PreProcess(properties[i].GetValue(this).ToString());
                         }
-                        //output += PreProcess(properties[i].GetValue(this).ToString());
 
                         if (!isFirstPropertyWritten)
                         {
@@ -140,8 +137,6 @@ namespace MyLibrary.CustomIO
                             output += PreProcess(properties[i].GetValue(this).ToString());
                         }
 
-                        //output += PreProcess(properties[i].GetValue(this).ToString());
-
                         if (!isFirstPropertyWritten)
                         {
                             isFirstPropertyWritten = true;
@@ -166,8 +161,6 @@ namespace MyLibrary.CustomIO
                         {
                             output += PreProcess(properties[i].GetValue(this).ToString());
                         }
-
-                        //output += PreProcess(properties[i].GetValue(this).ToString());
 
                         if (!isFirstPropertyWritten)
                         {
