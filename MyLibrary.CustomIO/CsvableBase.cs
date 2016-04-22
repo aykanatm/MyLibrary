@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace MyLibrary.CustomIO
 {
@@ -14,11 +15,28 @@ namespace MyLibrary.CustomIO
             {
                 if (i == properties.Length - 1)
                 {
-                    output += PreProcess(properties[i].GetValue(this).ToString());
+                    if (properties[i].PropertyType.IsSubclassOf(typeof (CsvableBase)))
+                    {
+                        var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
+                        output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                    }
+                    else
+                    {
+                        output += PreProcess(properties[i].GetValue(this).ToString());
+                    }
                 }
                 else
                 {
-                    output += PreProcess(properties[i].GetValue(this).ToString()) + ",";
+                    if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                    {
+                        var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
+                        output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                    }
+                    else
+                    {
+                        output += PreProcess(properties[i].GetValue(this).ToString());
+                    }
+                    output += ",";
                 }
             }
 
@@ -43,7 +61,18 @@ namespace MyLibrary.CustomIO
                         {
                             output += ",";
                         }
-                        output += PreProcess(properties[i].GetValue(this).ToString());
+
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += PreProcess(properties[i].GetValue(this).ToString());
+                        }
+
+                        //output += PreProcess(properties[i].GetValue(this).ToString());
 
                         if (!isFirstPropertyWritten)
                         {
@@ -59,7 +88,17 @@ namespace MyLibrary.CustomIO
                         {
                             output += ",";
                         }
-                        output += PreProcess(properties[i].GetValue(this).ToString());
+
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += PreProcess(properties[i].GetValue(this).ToString());
+                        }
+                        //output += PreProcess(properties[i].GetValue(this).ToString());
 
                         if (!isFirstPropertyWritten)
                         {
@@ -91,7 +130,17 @@ namespace MyLibrary.CustomIO
                             output += ",";
                         }
 
-                        output += PreProcess(properties[i].GetValue(this).ToString());
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += PreProcess(properties[i].GetValue(this).ToString());
+                        }
+
+                        //output += PreProcess(properties[i].GetValue(this).ToString());
 
                         if (!isFirstPropertyWritten)
                         {
@@ -108,7 +157,17 @@ namespace MyLibrary.CustomIO
                             output += ",";
                         }
 
-                        output += PreProcess(properties[i].GetValue(this).ToString());
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += PreProcess(properties[i].GetValue(this).ToString());
+                        }
+
+                        //output += PreProcess(properties[i].GetValue(this).ToString());
 
                         if (!isFirstPropertyWritten)
                         {
