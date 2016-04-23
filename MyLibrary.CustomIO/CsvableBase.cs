@@ -174,6 +174,172 @@ namespace MyLibrary.CustomIO
             return output;
         }
 
+        public virtual string GetHeaders()
+        {
+            string output = "";
+
+            var properties = GetType().GetProperties();
+
+            for (var i = 0; i < properties.Length; i++)
+            {
+                if (i == properties.Length - 1)
+                {
+                    if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                    {
+                        var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
+                        output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                    }
+                    else
+                    {
+                        output += properties[i].Name;
+                    }
+                }
+                else
+                {
+                    if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                    {
+                        var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
+                        output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                    }
+                    else
+                    {
+                        output += properties[i].Name;
+                    }
+                    output += ",";
+                }
+            }
+
+            return output;
+        }
+        public virtual string GetHeaders(string[] propertyNames, bool isIgnore)
+        {
+            string output = "";
+            bool isFirstPropertyWritten = false;
+
+
+            var properties = GetType().GetProperties();
+
+            for (var i = 0; i < properties.Length; i++)
+            {
+                if (isIgnore)
+                {
+                    if (!propertyNames.Contains(properties[i].Name))
+                    {
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += properties[i].Name;
+                        }
+
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (propertyNames.Contains(properties[i].Name))
+                    {
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += properties[i].Name;
+                        }
+
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
+                    }
+                }
+            }
+
+            return output;
+        }
+        public virtual string GetHeaders(int[] propertyIndexes, bool isIgnore)
+        {
+            string output = "";
+
+            bool isFirstPropertyWritten = false;
+
+            var properties = GetType().GetProperties();
+
+            for (var i = 0; i < properties.Length; i++)
+            {
+                if (isIgnore)
+                {
+                    if (!propertyIndexes.Contains(i))
+                    {
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += properties[i].Name;
+                        }
+
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (propertyIndexes.Contains(i))
+                    {
+                        if (isFirstPropertyWritten)
+                        {
+                            output += ",";
+                        }
+
+                        if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
+                        {
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
+                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                        }
+                        else
+                        {
+                            output += properties[i].Name;
+                        }
+
+                        if (!isFirstPropertyWritten)
+                        {
+                            isFirstPropertyWritten = true;
+                        }
+                    }
+                }
+
+            }
+
+            return output;
+        }
 
         public virtual void AssignValuesFromCsv(string[] proprtyValues)
         {

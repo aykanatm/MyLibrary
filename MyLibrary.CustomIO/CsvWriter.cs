@@ -58,13 +58,17 @@ namespace MyLibrary.CustomIO
             }
         }
 
-        public void WriteFromEnumerable(IEnumerable<T> objects, string destination)
+        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, bool displayHeaders)
         {
             var objs = objects as IList<T> ?? objects.ToList();
             if (objs.Any())
             {
                 using (var sw = new StreamWriter(destination))
                 {
+                    if (displayHeaders)
+                    {
+                        sw.WriteLine(objs[0].GetHeaders());
+                    }
                     foreach (var obj in objs)
                     {
                         sw.WriteLine(obj.ToCsv());
@@ -73,13 +77,17 @@ namespace MyLibrary.CustomIO
             }
         }
 
-        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, string[] propertyNames, bool isIgnore)
+        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, string[] propertyNames, bool isIgnore, bool displayHeaders)
         {
             var objs = objects as IList<T> ?? objects.ToList();
             if (objs.Any())
             {
                 using (var sw = new StreamWriter(destination))
                 {
+                    if (displayHeaders)
+                    {
+                        sw.WriteLine(objs[0].GetHeaders(propertyNames,isIgnore));
+                    }
                     foreach (var obj in objs)
                     {
                         sw.WriteLine(obj.ToCsv(propertyNames, isIgnore));
@@ -88,13 +96,17 @@ namespace MyLibrary.CustomIO
             }
         }
 
-        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, int[] propertyIndexes, bool isIgnore)
+        public void WriteFromEnumerable(IEnumerable<T> objects, string destination, int[] propertyIndexes, bool isIgnore, bool displayHeaders)
         {
             var objs = objects as IList<T> ?? objects.ToList();
             if (objs.Any())
             {
                 using (var sw = new StreamWriter(destination))
                 {
+                    if (displayHeaders)
+                    {
+                        sw.WriteLine(objs[0].GetHeaders(propertyIndexes, isIgnore));
+                    }
                     foreach (var obj in objs)
                     {
                         sw.WriteLine(obj.ToCsv(propertyIndexes, isIgnore));
