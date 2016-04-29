@@ -8,16 +8,21 @@ namespace MyLibrary.CustomIO
     {
         private GenericXmlSerializer<T> _gxs;
         
-        public void WriteFromXml(string directoryPath, string fileExtension, string destination)
+        public void WriteFromXml(string directoryPath, string fileExtension, string destination, bool displayHeaders)
         {
             var filePaths = Directory.GetFiles(directoryPath, fileExtension, SearchOption.AllDirectories);
             if (filePaths.Length > 0)
             {
                 using (var sw = new StreamWriter(destination))
                 {
+                    _gxs = new GenericXmlSerializer<T>();
+                    if (displayHeaders)
+                    {
+                        var obj = _gxs.DeSerialize(filePaths[0]);
+                        sw.WriteLine(obj.GetHeaders());
+                    }
                     foreach (var filePath in filePaths)
                     {
-                        _gxs = new GenericXmlSerializer<T>();
                         var obj = _gxs.DeSerialize(filePath);
                         sw.WriteLine(obj.ToCsv());
                     }
@@ -25,32 +30,42 @@ namespace MyLibrary.CustomIO
             }
         }
 
-        public void WriteFromXml(string directoryPath, string fileExtension, string destination, string[] propertyNames, bool isIgnore)
+        public void WriteFromXml(string directoryPath, string fileExtension, string destination, string[] propertyNames, bool isIgnore, bool displayHeaders)
         {
             var filePaths = Directory.GetFiles(directoryPath, fileExtension, SearchOption.AllDirectories);
             if (filePaths.Length > 0)
             {
                 using (var sw = new StreamWriter(destination))
                 {
+                    _gxs = new GenericXmlSerializer<T>();
+                    if (displayHeaders)
+                    {
+                        var obj = _gxs.DeSerialize(filePaths[0]);
+                        sw.WriteLine(obj.GetHeaders());
+                    }
                     foreach (var filePath in filePaths)
                     {
-                        _gxs = new GenericXmlSerializer<T>();
                         var obj = _gxs.DeSerialize(filePath);
                         sw.WriteLine(obj.ToCsv(propertyNames,isIgnore));
                     }
                 }
             }
         }
-        public void WriteFromXml(string directoryPath, string fileExtension, string destination, int[] propertyIndexes, bool isIgnore)
+        public void WriteFromXml(string directoryPath, string fileExtension, string destination, int[] propertyIndexes, bool isIgnore, bool displayHeaders)
         {
             var filePaths = Directory.GetFiles(directoryPath, fileExtension, SearchOption.AllDirectories);
             if (filePaths.Length > 0)
             {
                 using (var sw = new StreamWriter(destination))
                 {
+                    _gxs = new GenericXmlSerializer<T>();
+                    if (displayHeaders)
+                    {
+                        var obj = _gxs.DeSerialize(filePaths[0]);
+                        sw.WriteLine(obj.GetHeaders());
+                    }
                     foreach (var filePath in filePaths)
                     {
-                        _gxs = new GenericXmlSerializer<T>();
                         var obj = _gxs.DeSerialize(filePath);
                         sw.WriteLine(obj.ToCsv(propertyIndexes, isIgnore));
                     }
