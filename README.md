@@ -1,4 +1,4 @@
-This library is a collection of various helper classes and utilities I have used in my projects that I found usefull. Hopefully you will find something usefull here as well.
+This library is a collection of various C# helper classes and utilities I have used in my projects that I found usefull. Hopefully you will find something usefull here as well.
 
 ###ClassOperations
 ####GenericCloner
