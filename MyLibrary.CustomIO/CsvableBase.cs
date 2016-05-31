@@ -6,7 +6,7 @@ namespace MyLibrary.CustomIO
 {
     public abstract class CsvableBase
     {
-        public virtual string ToCsv()
+        public virtual string ToCsv(bool needPreprocessing)
         {
             string output = "";
 
@@ -21,7 +21,14 @@ namespace MyLibrary.CustomIO
                 }
                 else
                 {
-                    output += PreProcess(properties[i].GetValue(this).ToString());
+                    if (needPreprocessing)
+                    {
+                        output += PreProcess(properties[i].GetValue(this).ToString());
+                    }
+                    else
+                    {
+                        output += properties[i].GetValue(this).ToString();
+                    }
                 }
 
                 if (i != properties.Length - 1)
@@ -33,7 +40,7 @@ namespace MyLibrary.CustomIO
             return output;
         }
 
-        public virtual string ToCsv(string[] propertyNames, bool isIgnore)
+        public virtual string ToCsv(string[] propertyNames, bool isIgnore, bool needPreprocessing)
         {
             string output = "";
             bool isFirstPropertyWritten = false;
@@ -59,7 +66,14 @@ namespace MyLibrary.CustomIO
                         }
                         else
                         {
-                            output += PreProcess(properties[i].GetValue(this).ToString());
+                            if (needPreprocessing)
+                            {
+                                output += PreProcess(properties[i].GetValue(this).ToString());
+                            }
+                            else
+                            {
+                                output += properties[i].GetValue(this).ToString();
+                            }
                         }
 
                         if (!isFirstPropertyWritten)
@@ -84,7 +98,14 @@ namespace MyLibrary.CustomIO
                         }
                         else
                         {
-                            output += PreProcess(properties[i].GetValue(this).ToString());
+                            if (needPreprocessing)
+                            {
+                                output += PreProcess(properties[i].GetValue(this).ToString());
+                            }
+                            else
+                            {
+                                output += properties[i].GetValue(this).ToString();
+                            }
                         }
 
                         if (!isFirstPropertyWritten)
@@ -98,7 +119,7 @@ namespace MyLibrary.CustomIO
             return output;
         }
 
-        public virtual string ToCsv(int[] propertyIndexes, bool isIgnore)
+        public virtual string ToCsv(int[] propertyIndexes, bool isIgnore, bool needPreprocessing)
         {
             string output = "";
 
@@ -124,7 +145,14 @@ namespace MyLibrary.CustomIO
                         }
                         else
                         {
-                            output += PreProcess(properties[i].GetValue(this).ToString());
+                            if (needPreprocessing)
+                            {
+                                output += PreProcess(properties[i].GetValue(this).ToString());
+                            }
+                            else
+                            {
+                                output += properties[i].GetValue(this).ToString();
+                            }
                         }
 
                         if (!isFirstPropertyWritten)
@@ -149,7 +177,14 @@ namespace MyLibrary.CustomIO
                         }
                         else
                         {
-                            output += PreProcess(properties[i].GetValue(this).ToString());
+                            if (needPreprocessing)
+                            {
+                                output += PreProcess(properties[i].GetValue(this).ToString());
+                            }
+                            else
+                            {
+                                output += properties[i].GetValue(this).ToString();
+                            }
                         }
 
                         if (!isFirstPropertyWritten)
