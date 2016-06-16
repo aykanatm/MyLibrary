@@ -12,3 +12,4 @@ MyLibrary.WPF/bin/
 *.user
 FeatureTest/
 MyLibrary.StringOperations/obj/
+MyLibrary.StringOperations/bin/
