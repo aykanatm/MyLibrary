@@ -11,3 +11,4 @@ MyLibrary.WPF/obj/
 MyLibrary.WPF/bin/
 *.user
 FeatureTest/
+MyLibrary.StringOperations/obj/
