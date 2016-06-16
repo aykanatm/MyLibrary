@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MyLibrary.StringOperations.ExtensionMethods;
 
 namespace MyLibrary.CustomIO
 {
@@ -394,18 +395,7 @@ namespace MyLibrary.CustomIO
          
         private string PreProcess(string input)
         {
-            input = input.Replace('ı', 'i')
-                .Replace('ç', 'c')
-                .Replace('ö', 'o')
-                .Replace('ş', 's')
-                .Replace('ü', 'u')
-                .Replace('ğ', 'g')
-                .Replace('İ', 'I')
-                .Replace('Ç', 'C')
-                .Replace('Ö', 'O')
-                .Replace('Ş', 'S')
-                .Replace('Ü', 'U')
-                .Replace('Ğ', 'G')
+            input = input.ReplaceSpecialCharacters()
                 .Replace("\"", "\"\"")
                 .Trim();
             if (input.Contains(","))
