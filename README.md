@@ -43,7 +43,7 @@ Person 2 => murat aykanat
 As the name suggests, circular list holds a list of values or classes that the "currently selected item" can move to the next or previous index.
 
 Basic usage:
-```
+```cs
 var cl = new CircularList<Person>
 {
     new Person(1, "person1_name", "person1_lastname", new Address("city1", "country1")),
@@ -98,7 +98,7 @@ This class is a wrapper on top of the ```XmlSerializer``` class for ease of use.
 This class rescales a value into in a range of values to another range of values. Since the code contains ```dynamic``` keyword, it can only be used with C# 4.0 and above.
 
 Basic usage:
-```
+```cs
 double a = 155;
 Console.WriteLine(a + " is between 0 and 255");
 Console.WriteLine(GenericRescaler<double>.Rescale(a, 0, 255, 0, 1) + " is between 0 and 1");
@@ -111,7 +111,7 @@ Output:
 ####Matrix
 Standart matrix implementation.
 Basic usage:
-```
+```cs
 var m1 = new Matrix(new List<Vector>
 {
     new Vector(new List<double> {1, 2, 3}),
@@ -163,7 +163,7 @@ M1 * M2
 Standart vector implementation with any number of dimensions.
 
 Basic usage:
-```
+```cs
 var v1 = new Vector(new List<double> {1,2,3});
 var v2 = new Vector(new List<double> {2,4,5});
 Console.WriteLine(v1 + " + " + v2 +" = " + (v1 + v2));
