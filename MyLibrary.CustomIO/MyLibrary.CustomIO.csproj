@@ -48,6 +48,12 @@
     <Compile Include="GenericXmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyLibrary.StringOperations\MyLibrary.StringOperations.csproj">
+      <Project>{78d0e92b-7601-4b39-ac45-5fd9b09fffc3}</Project>
+      <Name>MyLibrary.StringOperations</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
