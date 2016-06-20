@@ -43,6 +43,7 @@
     <Compile Include="CircularList.cs" />
     <Compile Include="ExtensionMethods\CircularListExtensionMethods.cs" />
     <Compile Include="ExtensionMethods\ListExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\ObservableCollectionExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
