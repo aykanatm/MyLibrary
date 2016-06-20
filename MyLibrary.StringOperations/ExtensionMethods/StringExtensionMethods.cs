@@ -23,5 +23,20 @@ namespace MyLibrary.StringOperations.ExtensionMethods
                 .Replace('Ü', 'U')
                 .Replace('Ğ', 'G');
         }
+        public static string RemovePath(this string input)
+        {
+            if (input.Contains("\\"))
+            {
+                var modifiedInput = input.SkipWhile(s => s != '\\').Skip(1);
+                string output = string.Empty;
+                var enumerable = modifiedInput as char[] ?? modifiedInput.ToArray();
+                for (int i = 0; i < enumerable.Count(); i++)
+                {
+                    output += enumerable[i];
+                }
+                return RemovePath(output);
+            }
+            return input;
+        }
     }
 }
