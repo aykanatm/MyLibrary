@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace MyLibrary.CustomCollections.ExtensionMethods
 {
@@ -14,6 +15,19 @@ namespace MyLibrary.CustomCollections.ExtensionMethods
             }
 
             return output;
+        }
+
+        public static T NextItem<T>(this ObservableCollection<T> collection, T currentItem)
+        {
+            var currentIndex = collection.IndexOf(currentItem);
+            if (currentIndex < collection.Count - 1)
+            {
+                return collection[currentIndex + 1];
+            }
+            else
+            {
+                return collection[0];
+            }
         }
     }
 }
