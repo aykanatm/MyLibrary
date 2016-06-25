@@ -23,10 +23,17 @@ namespace MyLibrary.CustomCollections.ExtensionMethods
             {
                 return collection[currentIndex + 1];
             }
-            else
+            return collection[0];
+        }
+
+        public static T PreviousItem<T>(this ObservableCollection<T> collection, T currentItem)
+        {
+            var currentIndex = collection.IndexOf(currentItem);
+            if (currentIndex > 0)
             {
-                return collection[0];
+                return collection[currentIndex - 1];
             }
+            return collection[collection.Count - 1];
         }
     }
 }
