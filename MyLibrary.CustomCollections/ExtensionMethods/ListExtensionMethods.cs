@@ -9,12 +9,7 @@ namespace MyLibrary.CustomCollections.ExtensionMethods
     {
         private static readonly Random Rng = new Random();
 
-        public static Vector ToVector(this List<double> list)
-        {
-            return new Vector(list);
-        }
-
-        public static void ShuffleFisherYates<T>(this IList<T> list)
+        public static IList<T> ShuffleFisherYates<T>(this IList<T> list)
         {
             var n = list.Count;
             while (n > 1)
@@ -25,9 +20,11 @@ namespace MyLibrary.CustomCollections.ExtensionMethods
                 list[k] = list[n];
                 list[n] = value;
             }
+
+            return list;
         }
 
-        public static void Shuffle<T>(this IList<T> list)
+        public static IList<T> Shuffle<T>(this IList<T> list)
         {
             var provider = new RNGCryptoServiceProvider();
             var n = list.Count;
@@ -42,6 +39,7 @@ namespace MyLibrary.CustomCollections.ExtensionMethods
                 list[k] = list[n];
                 list[n] = value;
             }
+            return list;
         }
     }
 }
