@@ -71,13 +71,24 @@ Previous value = person2_name person2_lastname city2/country2
 This method transforms an existing IOrderedEnumerable<T> to CircularList<T>.
 ####Initialize<T>()
 This method sets the `CurrentItem` to the 0 index of the list.
-####ListExtensionMethods
+####VectorExtensionMethods
 ####ToVector()
+Turns the list into a `Vector` object.
+####ListExtensionMethods
 This method transforms an exiting List<double> object into a vector object.
 ####ShuffleFisherYates<T>()
 This method shuffles the list with Fisher-Yates technique
 ####Shuffle<T>()
 This method shuffles the list.
+####ObservableCollectionExtensionMethods
+####NextItem<T>
+Moves to the next item when provided the current item.
+####PreviousItem<T>
+Moves to the previous item when provided the current item.
+####Shuffle<T>
+Same as above for ObservableCollections.
+####ShuffleFisherYates<T>()
+Same as above for ObservableCollections.
 ###CustomIO
 ####FolderExtensionMethods
 ####Empty()
@@ -94,6 +105,10 @@ This class turns a file into an array of bytes and from bytes back to file.
 This class is a wrapper on top of the ```XmlSerializer``` class for ease of use.
 ###CustomMath
 ####VectorExtensionMethods
+####ToSingleColumnMatrix()
+Turns the vector into a single column `Matrix` object.
+####ToSingleRowMatrix()
+Turns the vector into a single row `Matrix` object.
 ####GenericRescaler
 This class rescales a value into in a range of values to another range of values. Since the code contains ```dynamic``` keyword, it can only be used with C# 4.0 and above.
 
