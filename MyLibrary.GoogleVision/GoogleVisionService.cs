@@ -11,8 +11,6 @@ namespace MyLibrary.GoogleVision
 {
     public class GoogleVisionService
     {
-        public IList<AnnotateImageResponse> Result;
-
         private readonly VisionService _visionService;
         private readonly int _maxResults;
 
@@ -30,7 +28,7 @@ namespace MyLibrary.GoogleVision
             _maxResults = maxResults;
         }
 
-        public void SendRequest(string imagePath)
+        public Annotations SendRequest(string imagePath)
         {
             var imageArray = File.ReadAllBytes(imagePath);
             var imageContent = Convert.ToBase64String(imageArray);
@@ -84,63 +82,121 @@ namespace MyLibrary.GoogleVision
                 }
             }).Execute();
 
-            Result = responses.Responses;
-        }
+            var labelAnnotations = new List<EntityAnnotation>();
+            var textAnnotations = new List<EntityAnnotation>();
+            var landmarkAnnotations = new List<EntityAnnotation>();
+            var logoAnnotations = new List<EntityAnnotation>();
+            var faceAnnotations = new List<FaceAnnotation>();
+            var safeSearchAnnotation = new SafeSearchAnnotation();
+            var imageProperties = new ImageProperties();
 
-        public void PrintResults()
-        {
-            foreach (var response in Result)
+            foreach (var response in responses.Responses)
             {
-                Console.WriteLine("Label Annotations");
-                if (response.LabelAnnotations == null)
-                {
-                    Console.WriteLine("No labels detected.");
-                }
-                else
+                if (response.LabelAnnotations != null)
                 {
                     foreach (var labelAnnotation in response.LabelAnnotations)
                     {
-                        Console.WriteLine(labelAnnotation.Description + " (score: " + labelAnnotation.Score + ")");
-                    }
-                }
-
-                Console.WriteLine("Landmark Annotations");
-                if (response.LandmarkAnnotations == null)
-                {
-                    Console.WriteLine("No landmarks detected.");
-                }
-                else
-                {
-                    foreach (var landmarkAnnotation in response.LandmarkAnnotations)
-                    {
-                        Console.WriteLine(landmarkAnnotation.Description + " (score: " + landmarkAnnotation.Score + ")");
-                    }
-                }
-
-                Console.WriteLine("Logo Annotations");
-                if (response.LogoAnnotations == null)
-                {
-                    Console.WriteLine("No logos detected.");
-                }
-                else
-                {
-                    foreach (var logoAnnotation in response.LogoAnnotations)
-                    {
-                        Console.WriteLine(logoAnnotation.Description + " score=" + logoAnnotation.Score);
+                        labelAnnotations.Add(labelAnnotation);
                     }
                 }
                 
-                Console.WriteLine("Text Annotations");
-                if (response.TextAnnotations == null)
+                if (response.LandmarkAnnotations != null)
                 {
-                    Console.WriteLine("No text detected.");
+                    foreach (var landmarkAnnotation in response.LandmarkAnnotations)
+                    {
+                        landmarkAnnotations.Add(landmarkAnnotation);
+                    }
                 }
-                else
+                
+                if (response.LogoAnnotations != null)
+                {
+                    foreach (var logoAnnotation in response.LogoAnnotations)
+                    {
+                        logoAnnotations.Add(logoAnnotation);
+                    }
+                }
+                
+                if (response.TextAnnotations != null)
                 {
                     foreach (var textAnnotation in response.TextAnnotations)
                     {
-                        Console.WriteLine(textAnnotation.Description + " score=" + textAnnotation.Score);
+                        textAnnotations.Add(textAnnotation);
                     }
+                }
+
+                if (response.FaceAnnotations != null)
+                {
+                    foreach (var faceAnnotation in response.FaceAnnotations)
+                    {
+                        faceAnnotations.Add(faceAnnotation);
+                    }
+                }
+
+                if (response.SafeSearchAnnotation != null)
+                {
+                    safeSearchAnnotation = response.SafeSearchAnnotation;
+                }
+
+                if (response.ImagePropertiesAnnotation != null)
+                {
+                    imageProperties = response.ImagePropertiesAnnotation;
+                }
+            }
+            
+            return new Annotations(labelAnnotations, textAnnotations, logoAnnotations, landmarkAnnotations, faceAnnotations, safeSearchAnnotation, imageProperties);
+        }
+
+        public void PrintResults(Annotations annotations)
+        {
+            Console.WriteLine("Label Annotations");
+            if (annotations.LabelAnnotations.Count == 0)
+            {
+                Console.WriteLine("No labels detected.");
+            }
+            else
+            {
+                foreach (var labelAnnotation in annotations.LabelAnnotations)
+                {
+                    Console.WriteLine(labelAnnotation.Description + " (score: " + labelAnnotation.Score + ")");
+                }
+            }
+
+            Console.WriteLine("Landmark Annotations");
+            if (annotations.LandmarkAnnotations.Count == 0)
+            {
+                Console.WriteLine("No landmarks detected.");
+            }
+            else
+            {
+                foreach (var landmarkAnnotation in annotations.LandmarkAnnotations)
+                {
+                    Console.WriteLine(landmarkAnnotation.Description + " (score: " + landmarkAnnotation.Score + ")");
+                }
+            }
+
+            Console.WriteLine("Logo Annotations");
+            if (annotations.LogoAnnotations.Count == 0)
+            {
+                Console.WriteLine("No logos detected.");
+            }
+            else
+            {
+                foreach (var logoAnnotation in annotations.LogoAnnotations)
+                {
+                    Console.WriteLine(logoAnnotation.Description + " score=" + logoAnnotation.Score);
+                }
+            }
+                
+            Console.WriteLine("Text Annotations");
+            if (annotations.TextAnnotations.Count == 0)
+            {
+                Console.WriteLine("No text detected.");
+            }
+            else
+            {
+                foreach (var textAnnotation in annotations.TextAnnotations)
+                {
+                    Console.WriteLine(textAnnotation.Description.Replace("\n",""));
                 }
             }
         }
