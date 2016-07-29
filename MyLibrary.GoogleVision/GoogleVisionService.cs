@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Google.Apis.Vision.v1;
 using Google.Apis.Vision.v1.Data;
 
