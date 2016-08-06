@@ -146,56 +146,50 @@ namespace MyLibrary.GoogleVision
         public void PrintResults(Annotations annotations)
         {
             Console.WriteLine("Label Annotations");
-            if (annotations.LabelAnnotations.Count == 0)
+            if (string.IsNullOrEmpty(annotations.LabelAnnotations))
             {
                 Console.WriteLine("No labels detected.");
             }
             else
             {
-                foreach (var labelAnnotation in annotations.LabelAnnotations)
-                {
-                    Console.WriteLine(labelAnnotation.Description + " (score: " + labelAnnotation.Score + ")");
-                }
+                Console.WriteLine("Detected Labels: " + annotations.LabelAnnotations);
             }
 
             Console.WriteLine("Landmark Annotations");
-            if (annotations.LandmarkAnnotations.Count == 0)
+            if (string.IsNullOrEmpty(annotations.LandmarkAnnotations))
             {
                 Console.WriteLine("No landmarks detected.");
             }
             else
             {
-                foreach (var landmarkAnnotation in annotations.LandmarkAnnotations)
-                {
-                    Console.WriteLine(landmarkAnnotation.Description + " (score: " + landmarkAnnotation.Score + ")");
-                }
+                Console.WriteLine("Detected Landmarks: " + annotations.LandmarkAnnotations);
             }
 
             Console.WriteLine("Logo Annotations");
-            if (annotations.LogoAnnotations.Count == 0)
+            if (string.IsNullOrEmpty(annotations.LogoAnnotations))
             {
                 Console.WriteLine("No logos detected.");
             }
             else
             {
-                foreach (var logoAnnotation in annotations.LogoAnnotations)
-                {
-                    Console.WriteLine(logoAnnotation.Description + " score=" + logoAnnotation.Score);
-                }
+                Console.WriteLine("Detected Logos: " + annotations.LogoAnnotations);
             }
                 
             Console.WriteLine("Text Annotations");
-            if (annotations.TextAnnotations.Count == 0)
+            if (string.IsNullOrEmpty(annotations.TextAnnotations))
             {
                 Console.WriteLine("No text detected.");
             }
             else
             {
-                foreach (var textAnnotation in annotations.TextAnnotations)
-                {
-                    Console.WriteLine(textAnnotation.Description.Replace("\n",""));
-                }
+                Console.WriteLine("Detected Text: "+ annotations.TextAnnotations);
             }
+
+            Console.WriteLine("Safe Search Annotations");
+            Console.WriteLine("Adult Content: " + annotations.SafeSearchAnnotation.Adult);
+            Console.WriteLine("Violence Content: " + annotations.SafeSearchAnnotation.Violence);
+            Console.WriteLine("Spoof Content: " + annotations.SafeSearchAnnotation.Spoof);
+            Console.WriteLine("Medical Content: " + annotations.SafeSearchAnnotation.Medical);
         }
     }
 }

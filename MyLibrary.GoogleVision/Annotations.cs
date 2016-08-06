@@ -1,29 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Google.Apis.Vision.v1.Data;
+using MyLibrary.GoogleVision.ExtensionMethods;
 using MyLibrary.GoogleVision.Models;
 
 namespace MyLibrary.GoogleVision
 {
     public class Annotations
     {
-        public IList<EntityAnnotation> LabelAnnotations { get; private set; }
-        public IList<EntityAnnotation> TextAnnotations { get; private set; }
-        public IList<EntityAnnotation> LogoAnnotations { get; private set; }
-        public IList<EntityAnnotation> LandmarkAnnotations { get; private set; }
+        public string LabelAnnotations { get; private set; }
+        public string TextAnnotations { get; private set; }
+        public string LogoAnnotations { get; private set; }
+        public string LandmarkAnnotations { get; private set; }
         public IList<FaceAnnotation> FaceAnnotations { get; private set; }
-        public SafeSearchAnnotation SafeSearchAnnotation { get; private set; }
+        public SafeSearchModel SafeSearchAnnotation { get; private set; }
         public ImageProperties ImageProperties { get; }
 
         public Annotations(IList<EntityAnnotation> labelAnnotations, IList<EntityAnnotation> textAnnotations, IList<EntityAnnotation> logoAnnotations,
                            IList<EntityAnnotation> landmarkAnnotations, IList<FaceAnnotation> faceAnnotations, SafeSearchAnnotation safeSearchAnnotation,
                            ImageProperties imageProperties)
         {
-            LabelAnnotations = labelAnnotations;
-            TextAnnotations = textAnnotations;
-            LogoAnnotations = logoAnnotations;
-            LandmarkAnnotations = landmarkAnnotations;
+            LabelAnnotations = labelAnnotations.EntityAnnotationListToString();
+            TextAnnotations = textAnnotations.EntityAnnotationListToString();
+            LogoAnnotations = logoAnnotations.EntityAnnotationListToString();
+            LandmarkAnnotations = landmarkAnnotations.EntityAnnotationListToString();
             FaceAnnotations = faceAnnotations;
-            SafeSearchAnnotation = safeSearchAnnotation;
+            SafeSearchAnnotation = safeSearchAnnotation.SafeSearchAnnotationsToModel();
             ImageProperties = imageProperties;
         }
 
