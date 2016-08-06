@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyLibrary.CustomMath\MyLibrary.CustomMath.csproj">
+    <ProjectReference Include="..\MyLibrary.CustomMath\CustomMath.csproj">
       <Project>{307D68FC-F1D8-43D5-B0E5-6809663F0B19}</Project>
-      <Name>MyLibrary.CustomMath</Name>
+      <Name>CustomMath</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

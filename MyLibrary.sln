@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.CustomCollections", "MyLibrary.CustomCollections\MyLibrary.CustomCollections.csproj", "{3D54A7A5-518B-4303-A0E8-0467D133A918}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCollections", "MyLibrary.CustomCollections\CustomCollections.csproj", "{3D54A7A5-518B-4303-A0E8-0467D133A918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.CustomMath", "MyLibrary.CustomMath\MyLibrary.CustomMath.csproj", "{307D68FC-F1D8-43D5-B0E5-6809663F0B19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMath", "MyLibrary.CustomMath\CustomMath.csproj", "{307D68FC-F1D8-43D5-B0E5-6809663F0B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.ClassOperations", "MyLibrary.ClassOperations\MyLibrary.ClassOperations.csproj", "{4CB8EC84-F80B-4A19-AF54-A770C11AA88A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassOperations", "MyLibrary.ClassOperations\ClassOperations.csproj", "{4CB8EC84-F80B-4A19-AF54-A770C11AA88A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.WPF", "MyLibrary.WPF\MyLibrary.WPF.csproj", "{FCF32DD7-F959-4A99-94D2-63D919B0D814}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "MyLibrary.WPF\WPF.csproj", "{FCF32DD7-F959-4A99-94D2-63D919B0D814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.CustomIO", "MyLibrary.CustomIO\MyLibrary.CustomIO.csproj", "{B293DCB5-00ED-4F92-9BAF-16ED6DD524DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomIO", "MyLibrary.CustomIO\CustomIO.csproj", "{B293DCB5-00ED-4F92-9BAF-16ED6DD524DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureTest", "FeatureTest\FeatureTest.csproj", "{BDDC4A61-32C0-4FED-8D86-01070FE3FD79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.StringOperations", "MyLibrary.StringOperations\MyLibrary.StringOperations.csproj", "{78D0E92B-7601-4B39-AC45-5FD9B09FFFC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringOperations", "MyLibrary.StringOperations\StringOperations.csproj", "{78D0E92B-7601-4B39-AC45-5FD9B09FFFC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.GoogleVision", "MyLibrary.GoogleVision\MyLibrary.GoogleVision.csproj", "{68BFB6AE-8496-4596-9ABF-7E92ABFB0CC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleVision", "MyLibrary.GoogleVision\GoogleVision.csproj", "{68BFB6AE-8496-4596-9ABF-7E92ABFB0CC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
