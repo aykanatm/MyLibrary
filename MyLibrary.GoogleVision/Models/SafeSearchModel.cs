@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Google.Apis.Vision.v1.Data;
 
 namespace MyLibrary.GoogleVision.Models
 {
     public class SafeSearchModel
     {
-        public string Adult { get; set; }
-        public string Violence { get; set; }
-        public string Spoof { get; set; }
-        public string Medical { get; set; }
+        public string Adult { get;}
+        public string Violence { get;}
+        public string Spoof { get;}
+        public string Medical { get;}
+
+        public SafeSearchModel(SafeSearchAnnotation safeSearchAnnotation)
+        {
+            Adult = safeSearchAnnotation.Adult;
+            Violence = safeSearchAnnotation.Violence;
+            Spoof = safeSearchAnnotation.Spoof;
+            Medical = safeSearchAnnotation.Medical;
+        }
     }
 }
