@@ -7,7 +7,7 @@ namespace CustomIO
 {
     public abstract class CsvableBase
     {
-        public virtual string ToCsv(bool needPreprocessing)
+        public virtual string ToCsv(bool needPreprocessing, char seperator)
         {
             string output = "";
 
@@ -34,14 +34,14 @@ namespace CustomIO
 
                 if (i != properties.Length - 1)
                 {
-                    output += ",";
+                    output += seperator;
                 }
             }
 
             return output;
         }
 
-        public virtual string ToCsv(string[] propertyNames, bool isIgnore, bool needPreprocessing)
+        public virtual string ToCsv(string[] propertyNames, bool isIgnore, bool needPreprocessing,char seperator)
         {
             string output = "";
             bool isFirstPropertyWritten = false;
@@ -57,7 +57,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -89,7 +89,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -120,7 +120,7 @@ namespace CustomIO
             return output;
         }
 
-        public virtual string ToCsv(int[] propertyIndexes, bool isIgnore, bool needPreprocessing)
+        public virtual string ToCsv(int[] propertyIndexes, bool isIgnore, bool needPreprocessing, char seperator)
         {
             string output = "";
 
@@ -136,7 +136,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -168,7 +168,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -200,7 +200,7 @@ namespace CustomIO
             return output;
         }
 
-        public virtual string GetHeaders()
+        public virtual string GetHeaders(char seperator)
         {
             string output = "";
 
@@ -220,13 +220,13 @@ namespace CustomIO
 
                 if (i != properties.Length - 1)
                 {
-                    output += ",";
+                    output += seperator;
                 }
             }
 
             return output;
         }
-        public virtual string GetHeaders(string[] propertyNames, bool isIgnore)
+        public virtual string GetHeaders(string[] propertyNames, bool isIgnore, char seperator)
         {
             string output = "";
             bool isFirstPropertyWritten = false;
@@ -242,7 +242,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -267,7 +267,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -290,7 +290,7 @@ namespace CustomIO
 
             return output;
         }
-        public virtual string GetHeaders(int[] propertyIndexes, bool isIgnore)
+        public virtual string GetHeaders(int[] propertyIndexes, bool isIgnore, char seperator)
         {
             string output = "";
 
@@ -306,7 +306,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
@@ -331,7 +331,7 @@ namespace CustomIO
                     {
                         if (isFirstPropertyWritten)
                         {
-                            output += ",";
+                            output += seperator;
                         }
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
