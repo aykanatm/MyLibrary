@@ -83,12 +83,15 @@
     <Compile Include="Annotations.cs" />
     <Compile Include="DetectionTypes.cs" />
     <Compile Include="ExtensionMethods\ListExtensionMethods.cs" />
-    <Compile Include="ExtensionMethods\SafeSearchAnnotationExtensionMethods.cs" />
     <Compile Include="ExtensionMethods\StringExtensionMethods.cs" />
     <Compile Include="GoogleAuthenticator.cs" />
     <Compile Include="GoogleVisionService.cs" />
     <Compile Include="Models\ColorRgba.cs" />
+    <Compile Include="Models\FaceAnnotationModel.cs" />
+    <Compile Include="Models\ImagePropertiesModel.cs" />
+    <Compile Include="Models\LandmarkModel.cs" />
     <Compile Include="Models\SafeSearchModel.cs" />
+    <Compile Include="Models\VertexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
