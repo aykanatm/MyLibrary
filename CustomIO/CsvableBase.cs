@@ -17,8 +17,8 @@ namespace CustomIO
             {
                 if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                 {
-                    var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
-                    output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                    var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[] {typeof(bool), typeof(char) });
+                    output += m.Invoke(properties[i].GetValue(this), new object [] {needPreprocessing, seperator});
                 }
                 else
                 {
@@ -41,7 +41,7 @@ namespace CustomIO
             return output;
         }
 
-        public virtual string ToCsv(string[] propertyNames, bool isIgnore, bool needPreprocessing,char seperator)
+        public virtual string ToCsv(string[] propertyNames, bool isIgnore, bool needPreprocessing, char seperator)
         {
             string output = "";
             bool isFirstPropertyWritten = false;
@@ -62,8 +62,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[] { typeof(bool), typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { needPreprocessing, seperator });
                         }
                         else
                         {
@@ -94,8 +94,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[] { typeof(bool), typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { needPreprocessing, seperator });
                         }
                         else
                         {
@@ -141,8 +141,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[] { typeof(bool), typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { needPreprocessing, seperator });
                         }
                         else
                         {
@@ -173,8 +173,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("ToCsv", new Type[] { typeof(bool), typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { needPreprocessing, seperator });
                         }
                         else
                         {
@@ -210,8 +210,8 @@ namespace CustomIO
             {
                 if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                 {
-                    var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
-                    output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                    var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[] {typeof(char)});
+                    output += m.Invoke(properties[i].GetValue(this), new object[] {seperator});
                 }
                 else
                 {
@@ -247,8 +247,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[] { typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { seperator });
                         }
                         else
                         {
@@ -272,8 +272,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[] { typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { seperator });
                         }
                         else
                         {
@@ -311,8 +311,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[] { typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { seperator });
                         }
                         else
                         {
@@ -336,8 +336,8 @@ namespace CustomIO
 
                         if (properties[i].PropertyType.IsSubclassOf(typeof(CsvableBase)))
                         {
-                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[0]);
-                            output += m.Invoke(properties[i].GetValue(this), new object[0]);
+                            var m = properties[i].PropertyType.GetMethod("GetHeaders", new Type[] { typeof(char) });
+                            output += m.Invoke(properties[i].GetValue(this), new object[] { seperator });
                         }
                         else
                         {
