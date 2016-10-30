@@ -27,5 +27,13 @@ namespace CustomIO
                 return (T)_xmlSerializer.Deserialize(sr);
             }
         }
+
+        public T DeSerializeFromString(string xmlString)
+        {
+            using (TextReader tr = new StringReader(xmlString))
+            {
+                return (T) _xmlSerializer.Deserialize(tr);
+            }
+        }
     }
 }
