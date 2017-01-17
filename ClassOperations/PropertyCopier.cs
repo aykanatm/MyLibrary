@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassOperations
+﻿namespace ClassOperations
 {
     public class PropertyCopier<TFrom, TTo> where TFrom : class
                                             where TTo : class 
