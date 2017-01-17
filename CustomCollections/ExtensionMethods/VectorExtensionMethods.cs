@@ -7,7 +7,6 @@ namespace CustomCollections.ExtensionMethods
     {
         public static Vector ToVector(this List<double> list)
         {
-
             return new Vector(list);
         }
     }
