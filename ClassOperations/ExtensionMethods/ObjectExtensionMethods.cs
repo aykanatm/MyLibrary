@@ -50,7 +50,10 @@ namespace ClassOperations.ExtensionMethods
                     {
                         if (parentProperty.Name == currentAttribute.ParentPropertyName)
                         {
-                            parentPropertyValue = parentProperty.GetValue(parent);
+                            if (parentProperty.PropertyType == childProperty.PropertyType)
+                            {
+                                parentPropertyValue = parentProperty.GetValue(parent);
+                            }
                         }
                     }
                     childProperty.SetValue(self, parentPropertyValue);
