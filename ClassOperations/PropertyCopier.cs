@@ -1,20 +1,20 @@
 ﻿namespace ClassOperations
 {
-    public class PropertyCopier<TFrom, TTo> where TFrom : class
-                                            where TTo : class 
+    public class PropertyCopier<TParent, TChild> where TParent : class
+                                            where TChild : class 
     {
-        public void Copy(TFrom from, TTo to)
+        public static void Copy(TParent parent, TChild child)
         {
-            var fromProperties = from.GetType().GetProperties();
-            var toProperties = to.GetType().GetProperties();
+            var parentProperties = parent.GetType().GetProperties();
+            var childProperties = child.GetType().GetProperties();
 
-            foreach (var fromProperty in fromProperties)
+            foreach (var parentProperty in parentProperties)
             {
-                foreach (var toProperty in toProperties)
+                foreach (var childProperty in childProperties)
                 {
-                    if (fromProperty.Name == toProperty.Name && fromProperty.PropertyType == toProperty.PropertyType)
+                    if (parentProperty.Name == childProperty.Name && parentProperty.PropertyType == childProperty.PropertyType)
                     {
-                        toProperty.SetValue(to,fromProperty.GetValue(from));
+                        childProperty.SetValue(child, parentProperty.GetValue(parent));
                         break;
                     }
                 }
