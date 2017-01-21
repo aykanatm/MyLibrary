@@ -5,7 +5,7 @@ namespace ClassOperations
     public class PropertyMatcher<TParent, TChild> where TParent : class 
                                                   where TChild : class
     {
-        public void GenerateMatchedObject(TParent parent, TChild child)
+        public static void GenerateMatchedObject(TParent parent, TChild child)
         {
             var childProperties = child.GetType().GetProperties();
             foreach (var childProperty in childProperties)
