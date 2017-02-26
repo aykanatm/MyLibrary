@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace CustomIO
+namespace CustomIO.Csv
 {
     public class CsvReader<T> where T : CsvableBase, new()
     {

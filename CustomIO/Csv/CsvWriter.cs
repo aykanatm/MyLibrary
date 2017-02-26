@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace CustomIO
+namespace CustomIO.Csv
 {
     public class CsvWriter<T> where T : CsvableBase
     {
