@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace CustomIO
@@ -14,25 +15,49 @@ namespace CustomIO
 
         public void Serialize(T obj, string filePath)
         {
-            using (var sw = new StreamWriter(filePath))
+            try
             {
-                _xmlSerializer.Serialize(sw, obj);
+                using (var sw = new StreamWriter(filePath))
+                {
+                    _xmlSerializer.Serialize(sw, obj);
+                }
+            }
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while serializing. " + e.Message;
+                throw new Exception(errorMessage);
             }
         }
 
         public T DeSerialize(string filePath)
         {
-            using (var sr = new StreamReader(filePath))
+            try
             {
-                return (T)_xmlSerializer.Deserialize(sr);
+                using (var sr = new StreamReader(filePath))
+                {
+                    return (T)_xmlSerializer.Deserialize(sr);
+                }
+            }
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while deserializing. " + e.Message;
+                throw new Exception(errorMessage);
             }
         }
 
         public T DeSerializeFromString(string xmlString)
         {
-            using (TextReader tr = new StringReader(xmlString))
+            try
             {
-                return (T) _xmlSerializer.Deserialize(tr);
+                using (TextReader tr = new StringReader(xmlString))
+                {
+                    return (T)_xmlSerializer.Deserialize(tr);
+                }
+            }
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while deserializing XML string. " + e.Message;
+                throw new Exception(errorMessage);
             }
         }
     }

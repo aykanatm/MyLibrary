@@ -1,16 +1,26 @@
-﻿namespace CustomIO.ExtensionMethods
+﻿using System;
+
+namespace CustomIO.ExtensionMethods
 {
     public static class FolderExtensionMethods
     {
         public static void Empty(this System.IO.DirectoryInfo directory)
         {
-            foreach (var file in directory.GetFiles())
+            try
             {
-                file.Delete();
+                foreach (var file in directory.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (var subDirectory in directory.GetDirectories())
+                {
+                    subDirectory.Delete(true);
+                }
             }
-            foreach (var subDirectory in directory.GetDirectories())
+            catch (Exception e)
             {
-                subDirectory.Delete(true);
+                var errorMessage = "An error occured while deleting files. " + e.Message;
+                throw new Exception(errorMessage);
             }
         }
     }

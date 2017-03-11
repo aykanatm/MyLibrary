@@ -20,46 +20,71 @@ namespace CustomIO
 
         public static FileSerializer FromString(string str)
         {
-            var stringBytes = str.Split(',');
-
-            var bytes = new byte[stringBytes.Length];
-
-            for (var i = 0; i < stringBytes.Length; i++)
+            try
             {
-                bytes[i] = Convert.ToByte(stringBytes[i]);
-            }
+                var stringBytes = str.Split(',');
 
-            var fileSerializer = new FileSerializer {Bytes = bytes};
-            return fileSerializer;
+                var bytes = new byte[stringBytes.Length];
+
+                for (var i = 0; i < stringBytes.Length; i++)
+                {
+                    bytes[i] = Convert.ToByte(stringBytes[i]);
+                }
+
+                var fileSerializer = new FileSerializer { Bytes = bytes };
+
+                return fileSerializer;
+            }
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while generating the file serializer. " + e.Message;
+                throw new Exception(errorMessage);
+            }
         }
 
         private static byte[] GenerateBytes(string filePath)
         {
-            using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            try
             {
-                using (var binaryReader = new BinaryReader(fileStream))
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    return binaryReader.ReadBytes((int)fileStream.Length);
+                    using (var binaryReader = new BinaryReader(fileStream))
+                    {
+                        return binaryReader.ReadBytes((int)fileStream.Length);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while generating bytes. " + e.Message;
+                throw new Exception(errorMessage);
             }
         }
 
         public void GenerateFile(string savePath)
         {
-            if (Bytes != null)
+            try
             {
-                if (Bytes.Length != 0)
+                if (Bytes != null)
                 {
-                    File.WriteAllBytes(savePath, Bytes);
+                    if (Bytes.Length != 0)
+                    {
+                        File.WriteAllBytes(savePath, Bytes);
+                    }
+                    else
+                    {
+                        throw new Exception("Byte array does not have any elements!");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Byte array does not have any elements!");
+                    throw new Exception("Byte array is null!");
                 }
             }
-            else
+            catch (Exception e)
             {
-                throw new Exception("Byte array is null!");
+                var errorMessage = "An error occured during file generation. " + e.Message;
+                throw new Exception(errorMessage);
             }
         }
     }

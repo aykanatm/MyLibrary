@@ -26,78 +26,94 @@ namespace CustomIO
 
         public List<string> GetValues(string componentName)
         {
-            var result = new List<string>();
-            using (var sr = new StreamReader(_filePath))
+            try
             {
-                bool componentFound = false;
-                string line = null;
-                do
+                var result = new List<string>();
+                using (var sr = new StreamReader(_filePath))
                 {
-                    line = sr.ReadLine();
-                    if (line != null)
+                    bool componentFound = false;
+                    string line = null;
+                    do
                     {
-                        if (line.StartsWith(_componentStartCharacter))
+                        line = sr.ReadLine();
+                        if (line != null)
                         {
-                            componentFound = false;
-                            var processedLine = line.Replace(_componentStartCharacter, String.Empty).Replace(_componentEndCharacter, String.Empty).Trim();
-                            if (processedLine == componentName)
+                            if (line.StartsWith(_componentStartCharacter))
                             {
-                                componentFound = true;
-                            }
-                        }
-                        else
-                        {
-                            if (componentFound)
-                            {
-                                var processedLine = line.Replace(_propertyWrapperCharacter, "");
-                                var keyValuePair = processedLine.Split(_propertyValueSetterCharater);
-
-                                result.Add(keyValuePair[PropertyValueIndex].Trim());
-                            }
-                        }
-                    }
-                } while (line != null);
-            }
-            return result;
-        }
-        public string GetValue(string componentName, string propertyName, string defaultValue)
-        {
-            string result = defaultValue;
-            using (var sr = new StreamReader(_filePath))
-            {
-                bool componentFound = false;
-                string line = null;
-                do
-                {
-                    line = sr.ReadLine();
-                    if (line != null)
-                    {
-                        if (line.StartsWith(_componentStartCharacter))
-                        {
-                            componentFound = false;
-
-                            var processedLine = line.Replace(_componentStartCharacter, String.Empty).Replace(_componentEndCharacter, String.Empty).Trim();
-                            if (processedLine == componentName)
-                            {
-                                componentFound = true;
-                            }
-                        }
-                        else
-                        {
-                            if (componentFound)
-                            {
-                                var processedLine = line.Replace(_propertyWrapperCharacter, "").Trim();
-                                var keyValuePair = processedLine.Split(_propertyValueSetterCharater);
-                                if (keyValuePair[PropertyNameIndex].Trim() == propertyName)
+                                componentFound = false;
+                                var processedLine = line.Replace(_componentStartCharacter, String.Empty).Replace(_componentEndCharacter, String.Empty).Trim();
+                                if (processedLine == componentName)
                                 {
-                                    result = keyValuePair[PropertyValueIndex].Trim();
+                                    componentFound = true;
+                                }
+                            }
+                            else
+                            {
+                                if (componentFound)
+                                {
+                                    var processedLine = line.Replace(_propertyWrapperCharacter, "");
+                                    var keyValuePair = processedLine.Split(_propertyValueSetterCharater);
+
+                                    result.Add(keyValuePair[PropertyValueIndex].Trim());
                                 }
                             }
                         }
-                    }
-                } while (line != null);
+                    } while (line != null);
+                }
+                return result;
             }
-            return result;
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while getting values. " + e.Message;
+                throw new Exception(errorMessage);
+            }
+        }
+        public string GetValue(string componentName, string propertyName, string defaultValue)
+        {
+            try
+            {
+                string result = defaultValue;
+                using (var sr = new StreamReader(_filePath))
+                {
+                    bool componentFound = false;
+                    string line = null;
+                    do
+                    {
+                        line = sr.ReadLine();
+                        if (line != null)
+                        {
+                            if (line.StartsWith(_componentStartCharacter))
+                            {
+                                componentFound = false;
+
+                                var processedLine = line.Replace(_componentStartCharacter, String.Empty).Replace(_componentEndCharacter, String.Empty).Trim();
+                                if (processedLine == componentName)
+                                {
+                                    componentFound = true;
+                                }
+                            }
+                            else
+                            {
+                                if (componentFound)
+                                {
+                                    var processedLine = line.Replace(_propertyWrapperCharacter, "").Trim();
+                                    var keyValuePair = processedLine.Split(_propertyValueSetterCharater);
+                                    if (keyValuePair[PropertyNameIndex].Trim() == propertyName)
+                                    {
+                                        result = keyValuePair[PropertyValueIndex].Trim();
+                                    }
+                                }
+                            }
+                        }
+                    } while (line != null);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                var errorMessage = "An error occured while getting the value. " + e.Message;
+                throw;
+            }
         }
     }
 }
