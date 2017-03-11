@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomIO.Packaging
 {
     public class FilePackageWriter
     {
         private readonly string _filepath;
+        private readonly IEnumerable<string> _contentFilePathList;
         private string _tempDirectoryPath;
 
         public FilePackageWriter(FilePackage filePackage)
         {
             _filepath = filePackage.FilePath;
+            _contentFilePathList = filePackage.ContentFilePathList;
         }
 
-        public void GeneratePackage(IEnumerable<string> filePathList, bool deleteContents)
+        public void GeneratePackage(bool deleteContents)
         {
-            var filePaths = filePathList as IList<string> ?? filePathList.ToList();
-
             try
             {
                 string parentDirectoryPath = null;
@@ -67,7 +64,7 @@ namespace CustomIO.Packaging
                 }
 
                 Directory.CreateDirectory(_tempDirectoryPath);
-                foreach (var filePath in filePaths)
+                foreach (var filePath in _contentFilePathList)
                 {
                     var filePathInfo = new FileInfo(filePath);
                     if (filePathInfo.Exists)
@@ -96,7 +93,7 @@ namespace CustomIO.Packaging
 
                 if (deleteContents)
                 {
-                    foreach (var filePath in filePaths)
+                    foreach (var filePath in _contentFilePathList)
                     {
                         if (File.Exists(filePath))
                         {
