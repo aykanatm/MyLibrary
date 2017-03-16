@@ -49,6 +49,7 @@
     <Compile Include="Csv\CsvWriter.cs" />
     <Compile Include="ExtensionMethods\FolderExtensionMethods.cs" />
     <Compile Include="GenericXmlSerializer.cs" />
+    <Compile Include="Packaging\FilePackageReader.cs" />
     <Compile Include="Packaging\FilePackageWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsFileReader.cs" />
