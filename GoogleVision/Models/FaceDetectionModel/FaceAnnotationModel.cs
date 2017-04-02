@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Google.Apis.Vision.v1.Data;
+using GoogleVision.Models.Common;
 
-namespace GoogleVision.Models
+namespace GoogleVision.Models.FaceDetectionModel
 {
     public class FaceAnnotationModel
     {
@@ -20,7 +21,6 @@ namespace GoogleVision.Models
         public FaceAnnotationModel(FaceAnnotation faceAnnotation)
         {
             Vertices = new List<VertexModel>();
-
             foreach (var vertex in faceAnnotation.BoundingPoly.Vertices)
             {
                 Vertices.Add(new VertexModel(vertex));

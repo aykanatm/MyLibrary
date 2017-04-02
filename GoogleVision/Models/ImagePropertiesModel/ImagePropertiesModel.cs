@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Google.Apis.Vision.v1.Data;
 
-namespace GoogleVision.Models
+namespace GoogleVision.Models.ImagePropertiesModel
 {
     public class ImagePropertiesModel
     {

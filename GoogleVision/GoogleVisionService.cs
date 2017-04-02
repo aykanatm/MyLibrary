@@ -86,6 +86,8 @@ namespace GoogleVision
             var faceAnnotations = new List<FaceAnnotation>();
             var safeSearchAnnotation = new SafeSearchAnnotation();
             var imageProperties = new ImageProperties();
+            var webDetection = new WebDetection();
+            var cropHints = new CropHintsAnnotation();
 
             foreach (var response in responses.Responses)
             {
@@ -129,6 +131,16 @@ namespace GoogleVision
                     }
                 }
 
+                if (response.WebDetection != null)
+                {
+                    webDetection = response.WebDetection;
+                }
+
+                if (response.CropHintsAnnotation != null)
+                {
+                    cropHints = response.CropHintsAnnotation;
+                }
+
                 if (response.SafeSearchAnnotation != null)
                 {
                     safeSearchAnnotation = response.SafeSearchAnnotation;
@@ -140,56 +152,7 @@ namespace GoogleVision
                 }
             }
             
-            return new Annotations(labelAnnotations, textAnnotations, logoAnnotations, landmarkAnnotations, faceAnnotations, safeSearchAnnotation, imageProperties);
-        }
-
-        public void PrintResults(Annotations annotations)
-        {
-            Console.WriteLine("Label Annotations");
-            if (string.IsNullOrEmpty(annotations.LabelAnnotations))
-            {
-                Console.WriteLine("No labels detected.");
-            }
-            else
-            {
-                Console.WriteLine("Detected Labels: " + annotations.LabelAnnotations);
-            }
-
-            Console.WriteLine("Landmark Annotations");
-            if (string.IsNullOrEmpty(annotations.LandmarkAnnotations))
-            {
-                Console.WriteLine("No landmarks detected.");
-            }
-            else
-            {
-                Console.WriteLine("Detected Landmarks: " + annotations.LandmarkAnnotations);
-            }
-
-            Console.WriteLine("Logo Annotations");
-            if (string.IsNullOrEmpty(annotations.LogoAnnotations))
-            {
-                Console.WriteLine("No logos detected.");
-            }
-            else
-            {
-                Console.WriteLine("Detected Logos: " + annotations.LogoAnnotations);
-            }
-                
-            Console.WriteLine("Text Annotations");
-            if (string.IsNullOrEmpty(annotations.TextAnnotations))
-            {
-                Console.WriteLine("No text detected.");
-            }
-            else
-            {
-                Console.WriteLine("Detected Text: "+ annotations.TextAnnotations);
-            }
-
-            Console.WriteLine("Safe Search Annotations");
-            Console.WriteLine("Adult Content: " + annotations.SafeSearchAnnotation.Adult);
-            Console.WriteLine("Violence Content: " + annotations.SafeSearchAnnotation.Violence);
-            Console.WriteLine("Spoof Content: " + annotations.SafeSearchAnnotation.Spoof);
-            Console.WriteLine("Medical Content: " + annotations.SafeSearchAnnotation.Medical);
+            return new Annotations(labelAnnotations, textAnnotations, logoAnnotations, landmarkAnnotations, faceAnnotations, safeSearchAnnotation, imageProperties, webDetection, cropHints);
         }
     }
 }
