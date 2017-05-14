@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureTest", "FeatureTest\FeatureTest.csproj", "{BDDC4A61-32C0-4FED-8D86-01070FE3FD79}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringUtils", "StringUtils\StringUtils.csproj", "{78D0E92B-7601-4B39-AC45-5FD9B09FFFC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUtils", "WPFUtils\WPFUtils.csproj", "{FCF32DD7-F959-4A99-94D2-63D919B0D814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogUtils", "LogUtils\LogUtils.csproj", "{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,14 @@ Global
 		{FCF32DD7-F959-4A99-94D2-63D919B0D814}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCF32DD7-F959-4A99-94D2-63D919B0D814}.Release|x86.ActiveCfg = Release|x86
 		{FCF32DD7-F959-4A99-94D2-63D919B0D814}.Release|x86.Build.0 = Release|x86
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Debug|x86.Build.0 = Debug|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Release|x86.ActiveCfg = Release|Any CPU
+		{7782D63D-CE8F-40EA-AE2B-6B44D9187E9D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
