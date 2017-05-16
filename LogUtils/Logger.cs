@@ -17,6 +17,8 @@ namespace LogUtils
 
         public static Logger GetInstance()
         {
+            var gxs = new GenericXmlSerializer<LogSetup>();
+
             if (_logger == null)
             {
                 lock (LockObject)
@@ -24,8 +26,6 @@ namespace LogUtils
                     if (_logger == null)
                     {
                         _logger = new Logger();
-
-                        var gxs = new GenericXmlSerializer<LogSetup>();
 
                         if (!Directory.Exists(LogBaseDirectory))
                         {
@@ -38,7 +38,7 @@ namespace LogUtils
                             {
                                 LogLevel = LogLevels.Info
                             };
-                            
+
                             gxs.Serialize(logSetup, LogSetupFilePath);
 
                             _logSetup = logSetup;
@@ -52,11 +52,24 @@ namespace LogUtils
                         {
                             using (var sw = new StreamWriter(LogFilePath))
                             {
-                                sw.WriteLine(DateTime.Now.ToLongDateString() + " / "  +  DateTime.Now.ToLongTimeString() + " - Log file created.");
+                                sw.WriteLine(DateTime.Now.ToLongDateString() + " / " + DateTime.Now.ToLongTimeString() +
+                                             " - Log file created.");
                             }
                         }
                     }
                 }
+            }
+
+            if (!File.Exists(LogSetupFilePath))
+            {
+                var logSetup = new LogSetup
+                {
+                    LogLevel = LogLevels.Info
+                };
+
+                gxs.Serialize(logSetup, LogSetupFilePath);
+
+                _logSetup = logSetup;
             }
 
             return _logger;
