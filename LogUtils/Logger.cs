@@ -14,6 +14,7 @@ namespace LogUtils
 
         private static LogLevels _logLevel;
         private static string _logFilePath;
+        private static bool _isLoggingEnabled;
 
         private static Logger _logger;
 
@@ -60,10 +61,11 @@ namespace LogUtils
             _logLevel = logLevel;
         }
 
-        public static void Initialize(string logFilePath, LogLevels logLevel)
+        public static void Initialize(string logFilePath, LogLevels logLevel, bool isLoggingEnabled)
         {
             _logFilePath = logFilePath;
             _logLevel = logLevel;
+            _isLoggingEnabled = isLoggingEnabled;
         }
 
         public void Debug(string message)
@@ -92,9 +94,12 @@ namespace LogUtils
 
         private static void WriteLog(string message)
         {
-            using (var sw = new StreamWriter(_logFilePath, true))
+            if (_isLoggingEnabled)
             {
-                sw.WriteLine(DateTime.Now.ToLongTimeString() + " - " + message);
+                using (var sw = new StreamWriter(_logFilePath, true))
+                {
+                    sw.WriteLine(DateTime.Now.ToLongTimeString() + " - " + message);
+                }
             }
         }
     }
