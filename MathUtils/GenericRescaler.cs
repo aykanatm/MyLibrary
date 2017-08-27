@@ -1,6 +1,6 @@
 ﻿namespace MathUtils
 {
-    public class GenericRescaler<T>
+    public static class GenericRescaler<T>
     {
         public static T Rescale(T value, T oldMin, T oldMax, T newMin, T newMax)
         {
@@ -12,7 +12,19 @@
             dynamic dynNewMin = newMin;
             dynamic dynNewMax = newMax;
 
-            return (dynValue - dynOldMin) / (dynOldMax - dynOldMin) * (dynNewMax - dynNewMin) + dynNewMin;
+            if (dynValue == dynOldMin)
+            {
+                return dynNewMin;
+            }
+            if (dynValue == dynOldMax)
+            {
+                return dynNewMax;
+            }
+
+            dynamic dynOldRange = dynOldMax - dynOldMin;
+            dynamic dynNewRange = dynNewMax - dynNewMin;
+
+            return (((dynValue - dynOldMin) * dynNewRange) / dynOldRange) + dynNewMin;
         }
     }
 }
